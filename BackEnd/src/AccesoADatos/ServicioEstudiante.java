@@ -198,7 +198,7 @@ public class ServicioEstudiante extends Servicio {
         return collection;
     }
 
-    public Collection listarEstCursos() throws GlobalException, NoDataException {
+    public Collection listarEstCursos(int estudianteId) throws GlobalException, NoDataException {
         try {
             this.conectar();
         } catch (ClassNotFoundException e) {
@@ -215,6 +215,7 @@ public class ServicioEstudiante extends Servicio {
         try {
             pstmt = this.conexion.prepareCall(LISTAR_EST_CURSOS);
             pstmt.registerOutParameter(1, OracleTypes.CURSOR);
+            pstmt.setInt(2, estudianteId);
             pstmt.execute();
             rs = (ResultSet) pstmt.getObject(1);
             while (rs.next()) {
