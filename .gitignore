@@ -84,3 +84,5 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 /BackEnd/nbproject/private/
+/LAB_INTEGRACION/nbproject/private/
+/BackEnd/dist/
