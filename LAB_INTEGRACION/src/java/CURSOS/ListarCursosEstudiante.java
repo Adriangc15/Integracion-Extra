@@ -5,8 +5,14 @@
  */
 package CURSOS;
 
+import Control.Control;
+import Entidades.Curso;
+import Entidades.Estudiante;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +25,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ListarCursosEstudiante", urlPatterns = {"/ListarCursosEstudiante"})
 public class ListarCursosEstudiante extends HttpServlet {
+    
+    private String estudianteCursoJsonString;
+    Collection estudiantesCurso;
+    Control control = Control.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +42,21 @@ public class ListarCursosEstudiante extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ListarCursosEstudiante</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ListarCursosEstudiante at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+         Gson gson = new Gson();
+        PrintWriter out = response.getWriter();
+        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+                estudiantesCurso =  control.listarEstCursos(id);
+            } catch (Exception ex) {
+                estudiantesCurso =  new ArrayList<Curso>();
+               // Logger.getLogger(ServiceAlumno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        estudianteCursoJsonString = gson.toJson(estudiantesCurso);
+        try {
+            out.println(estudianteCursoJsonString);
+        } finally {
+            out.close();
         }
     }
 

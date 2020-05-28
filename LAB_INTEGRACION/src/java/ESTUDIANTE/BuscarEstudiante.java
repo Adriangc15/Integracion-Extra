@@ -5,6 +5,10 @@
  */
 package ESTUDIANTE;
 
+import Control.Control;
+import Entidades.Estudiante;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 /**
  *
@@ -19,6 +24,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "BuscarEstudiante", urlPatterns = {"/BuscarEstudiante"})
 public class BuscarEstudiante extends HttpServlet {
+    
+    Estudiante estidiante;
+    private Control control = Control.getInstance();
+    private String estudianteJsonString;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +41,29 @@ public class BuscarEstudiante extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BuscarEstudiante</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BuscarEstudiante at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+         Gson gson = new Gson();
+        PrintWriter out = response.getWriter();
+        
+        StringBuilder jsonBuff = new StringBuilder();
+        String line = null;
+        BufferedReader reader = request.getReader();
+        while ((line = reader.readLine()) != null)
+            jsonBuff.append(line);
+        
+        JSONObject jsonObject =  new JSONObject(jsonBuff.toString());
+        estidiante = gson.fromJson(jsonObject.toString(), Estudiante.class);
+        
+        estudianteJsonString = gson.toJson(estidiante);
+        
+         try {
+            control.insertarEstudiante(estidiante);
+        } catch (Exception e) {
+        }
+         try {
+            out.println(estudianteJsonString);
+        } finally {
+            out.close();
         }
     }
 
