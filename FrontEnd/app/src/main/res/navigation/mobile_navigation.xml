@@ -40,4 +40,9 @@
         android:name="com.mobile.frontend.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <activity
+        android:id="@+id/estudianteFragment"
+        android:name="com.mobile.frontend.ui.estudiantes.EstudianteFragment"
+        android:label="fragment_estudiante"
+        tools:layout="@layout/fragment_estudiante" />
 </navigation>
