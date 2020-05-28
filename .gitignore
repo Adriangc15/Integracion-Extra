@@ -84,4 +84,8 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 /BackEnd/nbproject/private/
+<<<<<<< HEAD
+/LAB_INTEGRACION/nbproject/private/
+=======
+>>>>>>> fd8920b58ff3dfd93e83215bf0a36171b7bf7402
 /BackEnd/dist/

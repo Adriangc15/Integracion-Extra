@@ -24,11 +24,11 @@ public class ServicioEstudiante extends Servicio {
     /* 
         TODO: Reemplazar por los correctos SP 
      */
-    private static final String INSERTAR_ESTUDIANTE = "";
-    private static final String MODIFICAR_ESTUDIANTE = "";
-    private static final String LISTAR_ESTUDIANTE = "";
-    private static final String ELIMINAR_ESTUDIANTE = "";
-    private static final String LISTAR_EST_CURSOS = "";
+    private static final String INSERTAR_ESTUDIANTE = "{call SP_INSERTAESTUDIANTE(?,?,?,?)}";
+    private static final String MODIFICAR_ESTUDIANTE = "{call SP_UPDATEESTUDIANTE(?,?,?,?)}";
+    private static final String LISTAR_ESTUDIANTES = "{?=call listar_estudiantes()";
+    private static final String ELIMINAR_ESTUDIANTE = "{call SP_DELETEESTUDIANTE(?)}";
+    private static final String LISTAR_EST_CURSOS = "{?=calllistar_cursos_x_estudiante(?)}";
 
     private static final int ESTUDIANTE_ID = 1;
     private static final int ESTUDIANTE_NOMBRE = 2;
@@ -167,7 +167,7 @@ public class ServicioEstudiante extends Servicio {
         CallableStatement pstmt = null;
 
         try {
-            pstmt = this.conexion.prepareCall(LISTAR_ESTUDIANTE);
+            pstmt = this.conexion.prepareCall(LISTAR_ESTUDIANTES);
             pstmt.registerOutParameter(1, OracleTypes.CURSOR);
             pstmt.execute();
             rs = (ResultSet) pstmt.getObject(1);
