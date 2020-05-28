@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Sistema de Matricula</string>
+    <string name="title_activity_main">Bienvenido</string>
+    <string name="codigo_carrera_hint">Código de Carrera</string>
+    <string name="titulo_carrera_hint">Título de Carrera</string>
+    <string name="codigo_curso_hint">Código de Curso</string>
+    <string name="nombre_curso_hint">Nombre de Curso</string>
+    <string name="credito_curos_hint">Créditos de Curso</string>
+    <string name="horas_curso_hint">Horas de Curso</string>
+    <string name="anho_curso_hint">Año de Curso</string>
+    <string name="login_email_hint">Correo Electrónico</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_sign_in_action" >Ingresar</string>
+    <string name="list_edit_text">Editar</string>
+    <string name="list_delete_text">Eliminar</string>
+    <string name="nav_header_title">Usuario Activo:</string>
+    <string name="nav_header_desc">correo electrónico</string>
+    <string name="main_logout_activity">Cerrar Sesión</string>
+    <string name="menusearch_search_action">Buscar</string>
+    <string name="nombre_carrera_hint">Nombre de Carrera</string>
+    <string name="navigation_drawer_open">Abrir navegación</string>
+    <string name="navigation_drawer_close">Cerrar navegación</string>
+    <string name="message_log_out">Hasta Pronto!</string>
+    <string name="moved_to_carreras">Lista de Carreras</string>
+    <string name="moved_to_cursos">Lista de Cursos</string>
+    <string name="login_failed">Correo o contrasña incorrecto!</string>
+    <string name="login_success">Bienvenido %1$s!</string>
+
+</resources>
